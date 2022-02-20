@@ -7,80 +7,56 @@ public class Questao03 {
 
 	public static void main(String[] args) {
 		
+		/**
+		 * @author Danilo Nogueira da Silva
+		 * Esta classe encontra pares de anagramas dentro de uma palavra informada pelo usuario.
+		 * Esta classe ainda precisa ser ajustada porque nao esta encontrando todos os anagramas devido a forma como a palavra esta sendo percorrida.
+		 * @param args
+		 */
+		
 		Scanner entrada = new Scanner(System.in);
 		
-		//System.out.println("Informe uma palavra para encontrarmos os anagramas: ");
-		//String palavra = entrada.nextLine();
-		String palavra = "ifailuhkqq";
-		int tamanhoPalavra = palavra.trim().length();
+		System.out.print("Informe uma palavra para encontrarmos os anagramas: ");
+		String palavraInicial = entrada.nextLine();
+		String palavraAjustada = palavraInicial.toLowerCase();
+		int tamanhoPalavra = palavraAjustada.trim().length();
 		int quantidade = 0;
 		
-		System.out.println("=== IMPRIMINDO ===");
 		for(int i = 0; i < tamanhoPalavra; i++) {
 			for(int j = i + 1; j <= tamanhoPalavra; j++) {
 				for(int k = j + 1; k <= tamanhoPalavra; k++) {
 					if(i != j && i < j && k <= tamanhoPalavra && i == 0) {
-						char[] trecho1SemOrdenacao = palavra.substring(i, j).toCharArray();
-						Arrays.sort(trecho1SemOrdenacao);
-						StringBuilder trecho1Ordenado = new StringBuilder();
-						for(char c : trecho1SemOrdenacao) {
-							trecho1Ordenado.append(c);
-						}
-						char[] trecho2SemOrdenacao = palavra.substring(k-j, k).toCharArray();
-						Arrays.sort(trecho2SemOrdenacao);
-						StringBuilder trecho2Ordenado = new StringBuilder();
-						for(char c : trecho2SemOrdenacao) {
-							trecho2Ordenado.append(c);
-						}
-						System.out.println("i: " + i + " | j: " + j + " | k: " + k + " | k-1: " + (k-j));
-						
-						
-						System.out.println(palavra.substring(i, j) + "    |    " + palavra.substring(k-j, k));
-						
-						
-						System.out.println("Trecho 1: " + trecho1Ordenado + " | Trecho 2: " + trecho2Ordenado);
+						StringBuilder trecho1Ordenado = remontaPedacoDaPalavraOrdenado(fragmentaEOrdenaPedacoDaPalavra(palavraAjustada, i, j));
+						StringBuilder trecho2Ordenado = remontaPedacoDaPalavraOrdenado(fragmentaEOrdenaPedacoDaPalavra(palavraAjustada, k-j, k));
 						if(trecho1Ordenado.toString().equals(trecho2Ordenado.toString())){
-							System.out.println("ESTE DE CIMA!!!!!!");
+							System.out.println(trecho1Ordenado.toString() + " | " + trecho2Ordenado.toString());
 							++quantidade;
 						}
 					}
-					
-					if(i != j && i < j && k <= tamanhoPalavra) {
-						char[] trecho1SemOrdenacao = palavra.substring(i, j).toCharArray();
-						Arrays.sort(trecho1SemOrdenacao);
-						StringBuilder trecho1Ordenado = new StringBuilder();
-						for(char c : trecho1SemOrdenacao) {
-							trecho1Ordenado.append(c);
-						}
-						char[] trecho2SemOrdenacao = palavra.substring(k-j, k).toCharArray();
-						Arrays.sort(trecho2SemOrdenacao);
-						StringBuilder trecho2Ordenado = new StringBuilder();
-						for(char c : trecho2SemOrdenacao) {
-							trecho2Ordenado.append(c);
-						}
-						System.out.println("i: " + i + " | j: " + j + " | k: " + k + " | k-i: " + (k-i));
-						
-						
-						System.out.println(palavra.substring(i, j) + "    |    " + palavra.substring(k-i, k));
-						
-						
-						System.out.println("Trecho 1: " + trecho1Ordenado + " | Trecho 2: " + trecho2Ordenado);
-						if(trecho1Ordenado.toString().equals(trecho2Ordenado.toString())){
-							System.out.println("ESTE DE CIMA!!!!!!");
-							++quantidade;
-						}
-					}
+
 				}
 
 			}
-			System.out.println();
-			System.out.println();
 		}
 		
 		System.out.println("Quantidade: " + quantidade);
 		
 	
 		entrada.close();
+	}
+	
+	private static char[] fragmentaEOrdenaPedacoDaPalavra(String pedacoDaPalavra, int posicaoInicial, int posicaoFinal) {
+		char[] trecho1SemOrdenacao = pedacoDaPalavra.substring(posicaoInicial, posicaoFinal).toCharArray();
+		Arrays.sort(trecho1SemOrdenacao);
+		return trecho1SemOrdenacao;
+	}
+	
+	private static StringBuilder remontaPedacoDaPalavraOrdenado(char[] trechoASerMontado) {
+		StringBuilder trechoOrdenado = new StringBuilder();
+		for(char c : trechoASerMontado) {
+			trechoOrdenado.append(c);
+		}
+		return trechoOrdenado;
 	}
 
 }

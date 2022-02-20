@@ -3,17 +3,23 @@ package br.com.proway.capgemini;
 import java.util.Scanner;
 
 public class Questao02 {
+	
+	/**
+	 * @author Danilo Nogueira da Silva
+	 * Esta classe valida a senha informada pelo usuario.
+	 * @param args
+	 */
 
 	public static void main(String[] args) {
 		
 		System.out.println("=== DEFINICAO DE SENHA ===");
-		System.out.println("Possui no mínimo 6 caracteres.\r\n"
-				         + "Contém no mínimo 1 digito.\r\n"
-				         + "Contém no mínimo 1 letra em minúsculo.\r\n"
-				         + "Contém no mínimo 1 letra em maiúsculo.\r\n"
-				         + "Contém no mínimo 1 caractere especial. Os caracteres especiais são: !@#$%^&*()-+\r\n");
+		System.out.println("Possui no minimo 6 caracteres.\r\n"
+				         + "Contém no minimo 1 digito.\r\n"
+				         + "Contém no minimo 1 letra em minusculo.\r\n"
+				         + "Contém no minimo 1 letra em maiusculo.\r\n"
+				         + "Contém no minimo 1 caractere especial. Os caracteres especiais sao: !@#$%^&*()-+\r\n");
 		
-		System.out.println("Informe sua senha: ");
+		System.out.print("Informe sua senha: ");
 		Scanner entrada = new Scanner(System.in);
 		String senha = entrada.nextLine();
 		

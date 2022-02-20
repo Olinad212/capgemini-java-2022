@@ -7,7 +7,7 @@ public class Questao01 {
 	/**
 	 * @author Danilo Nogueira da Silva
 	 * Esta classe imprime uma escada com o tamanho/quantidade de niveis informado pelo usuario.
-	 * @param args
+	 * @param
 	 */
 
 	public static void main(String[] args) {
